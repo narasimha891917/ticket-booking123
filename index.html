@@ -2,51 +2,18 @@
 <html>
 <head>
   <title>Movie Booking</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      background-color: #222;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    form {
-      background: #333;
-      padding: 20px;
-      border-radius: 10px;
-      width: 300px;
-    }
-    input, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border: none;
-      border-radius: 5px;
-    }
-    button {
-      background-color: #28a745;
-      color: white;
-      font-weight: bold;
-    }
-    #status {
-      margin-top: 15px;
-    }
-  </style>
 </head>
-<body>
-
-  <form id="bookingForm">
-    <h2>Movie Booking</h2>
-    <input type="text" id="name" placeholder="Your Name" required>
-    <input type="text" id="movie" placeholder="Movie Name" required>
-    <input type="date" id="date" required>
-    <input type="time" id="time" required>
-    <input type="text" id="seats" placeholder="Seats (A1, A2)" required>
-    <input type="number" id="total" placeholder="Total ₹" required>
-    <button type="submit">Book Now</button>
-    <div id="status"></div>
+<body style="background:#111;color:#fff;font-family:sans-serif;display:flex;justify-content:center;align-items:center;height:100vh;">
+  <form id="bookingForm" style="background:#222;padding:20px;border-radius:10px;">
+    <h2>Book Movie</h2>
+    <input type="text" id="name" placeholder="Name" required><br><br>
+    <input type="text" id="movie" placeholder="Movie" required><br><br>
+    <input type="date" id="date" required><br><br>
+    <input type="time" id="time" required><br><br>
+    <input type="text" id="seats" placeholder="Seats (e.g. A1,A2)" required><br><br>
+    <input type="number" id="total" placeholder="Total ₹" required><br><br>
+    <button type="submit">Book</button>
+    <p id="status"></p>
   </form>
 
   <script>
@@ -62,7 +29,7 @@
         total: document.getElementById("total").value
       };
 
-      fetch("https://script.google.com/macros/s/AKfycbxz9mQ9cX7HrgLLZGu-0LvPYnzK-uWVQ9-honqqV1mRNhjuD8qFv-RVgGlngX2TqbpsWw/exec", {
+      fetch("https://script.google.com/macros/s/AKfycbwcHcs3zb6ztaMGXaKm5Fr3Y71cRZpyylId1W1brZ7R53T4xJg7FHPgME8XBixxJKZfPA/exec", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -84,6 +51,6 @@
       });
     });
   </script>
-
 </body>
 </html>
+
