@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Movie Booking</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #222;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    form {
+      background: #333;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      font-weight: bold;
+    }
+    #status {
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="bookingForm">
+    <h2>Movie Booking</h2>
+    <input type="text" id="name" placeholder="Your Name" required>
+    <input type="text" id="movie" placeholder="Movie Name" required>
+    <input type="date" id="date" required>
+    <input type="time" id="time" required>
+    <input type="text" id="seats" placeholder="Seats (A1, A2)" required>
+    <input type="number" id="total" placeholder="Total ₹" required>
+    <button type="submit">Book Now</button>
+    <div id="status"></div>
+  </form>
+
+  <script>
+    document.getElementById("bookingForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const data = {
+        name: document.getElementById("name").value,
+        movie: document.getElementById("movie").value,
+        date: document.getElementById("date").value,
+        time: document.getElementById("time").value,
+        seats: document.getElementById("seats").value,
+        total: document.getElementById("total").value
+      };
+
+      fetch("https://script.google.com/macros/s/AKfycbxz9mQ9cX7HrgLLZGu-0LvPYnzK-uWVQ9-honqqV1mRNhjuD8qFv-RVgGlngX2TqbpsWw/exec", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(response => {
+        if (response.result === "success") {
+          document.getElementById("status").innerText = "✅ Booking Successful!";
+          document.getElementById("bookingForm").reset();
+        } else {
+          document.getElementById("status").innerText = "❌ Error: " + response.message;
+        }
+      })
+      .catch(error => {
+        console.error("Fetch error:", error);
+        document.getElementById("status").innerText = "❌ Booking Failed. Check console.";
+      });
+    });
+  </script>
+
+</body>
+</html>
